@@ -7,9 +7,9 @@ const host = db.host;
 
 module.exports = {
   development: {
-    username,
-    password,
-    database,
+    username:'diagnostic',
+    password:'password',
+    database:'diagnostic_database',
     host,
     dialect: 'postgres',
     seederStorage: 'sequelize',
