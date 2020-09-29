@@ -27,7 +27,9 @@
       - Id, FirstName, LastName, email(unique), hashed Password, Address, Clinic Name, Phone number, role { provider, technician, clinician, admin}
 
     - Cases
-      - Id, providerID, patient_name, technician_id, clinician_id, sumbitted_date, status { 0: submit 1: technician 2:clinician 3:completed}
+      - Id, providerID, patient_name, technician_id, clinician_id, submit_date, status { 0: submit 1: technician 2:clinician 3:completed}
+    
+    npx sequelize-cli model:generate --name Case --attributes patientName:string,submitDate:date,providerId:integer,technicianId:integer,clinicianId:integer,status:integer
 
 
 

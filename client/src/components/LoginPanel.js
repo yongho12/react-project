@@ -5,12 +5,10 @@ import { UserContext } from './UserContext';
 
 const LoginPanel = (props) => {
     const { login, authToken } = useContext(UserContext);
-    // console.log(authToken) // console log authToken to test login flow
-    const [email, setEmail] = useState('demo@example.com');
+    const [email, setEmail] = useState('demo1@example.com');
     const [password, setPassword] = useState('password');
 
     const handleSubmit = async (e) => {
-     
         e.preventDefault();
         const response = await fetch("/api/users/token", {
           method: "POST",
@@ -21,13 +19,10 @@ const LoginPanel = (props) => {
           }),
         });
 
-           console.log("email", email);
-           console.log("password", password);
-
         if (response.ok) {
             const { token } = await response.json();
             login(token);
-            // props.history.push('/');
+            props.history.push('/');
         }
     };
 
