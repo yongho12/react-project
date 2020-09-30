@@ -22,8 +22,12 @@ const LoginPanel = (props) => {
         if (response.ok) {
             const { token } = await response.json();
             login(token);
-            props.history.push('/');
-        }
+            props.history.push("/cases");
+        } 
+        // yongho
+        else {
+            //props.history.push( ) // sign up
+        } 
     };
 
     const updateEmail = (e) => setEmail(e.target.value);

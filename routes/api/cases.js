@@ -6,11 +6,13 @@ const { Case } = require("../../db/models");
 const router = express.Router();
 
 
-// getting users
+// getting Cases
 router.get(
   "/",
   asyncHandler(async function (req, res, next) {
-    const cases = await Case.findAll();
+    const cases = await Case.findAll({
+    //   include: User,
+    });
     return res.json({ cases });
   })
 );

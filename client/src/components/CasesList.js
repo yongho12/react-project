@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 // import { UserContext } from "./UserContext";
-import Case from "./Case";
+import Case from "./SignUp";
 
 function CasesList(props) {
   const [cases, setCases] = useState([]);
@@ -36,8 +36,8 @@ function CasesList(props) {
             <tr key={ca.id}>
               <td>{ca.id}</td>
               <td>{ca.providerId}</td>
-              <td>{ca.id}</td>
-              <td>{ca.id}</td>
+              <td>{ca.patientName}</td>
+              <td>{ca.technicianId}</td>
               <td>{ca.submitDate}</td>
             </tr>
           ))}

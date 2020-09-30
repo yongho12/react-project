@@ -5,7 +5,7 @@ import UserList from './components/UsersList';
 import LoginPanel from './components/LoginPanel';
 import CaseList from './components/CasesList';
 import { UserContext } from './components/UserContext'
-
+import SignUp from './components/SignUp';
 
 function App() {
   const { needLogin } = useContext(UserContext);
@@ -34,6 +34,16 @@ function App() {
               Log In
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/logout" activeClassName="active">
+              Log Out
+            </NavLink>
+          </li>
+           <li>
+            <NavLink to="/signup" activeClassName="active">
+              Sign Up
+            </NavLink>
+          </li>
         </ul>
       </nav>
       <Switch>
@@ -41,10 +51,10 @@ function App() {
           <UserList />
         </Route>
         <Route path="/login" component={LoginPanel} />
+        <Route path="/logout" component={LoginPanel} />
         <Route path="/cases" component={CaseList} />
-        <Route path="/">
+        <Route path="/signup" component={SignUp} />
           <h1>My Home Page</h1>
-        </Route>
       </Switch>
     </BrowserRouter>
   );

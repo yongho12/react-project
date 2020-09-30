@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require("bcryptjs");
 const asyncHandler = require('express-async-handler');
 const jwt = require("jsonwebtoken");
 const { jwtConfig } = require("../../config");
@@ -59,5 +60,33 @@ router.post(
     res.json({ token, user: { id: user.id } });
   })
 );
+
+
+// Sign Up
+router.post(
+  "/signup",
+  asyncHandler(async function (req, res, next) {
+ 
+    const { email, password, username } = req.body;
+    const hashedPassword = await bcrypt.hashSync(password, 10);
+    const user = await User.create({
+      email,
+      username,
+      hashedPassword,
+    });
+
+     const token = {
+       id: user.id,
+       email: user.email,
+     };
+     
+    res.status(201).json({
+      user: { id: user.id },
+      token,
+    });
+  })
+);
+
+
 
 module.exports = router;

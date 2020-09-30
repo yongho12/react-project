@@ -11,19 +11,22 @@ module.exports = {
       },
       patientName: {
         type: Sequelize.STRING(50),
-        allowNull: false
+        allowNull: false,
       },
       submitDate: {
         type: Sequelize.DATE,
       },
       providerId: {
         type: Sequelize.INTEGER,
+        references: { model: "Users" },
       },
       technicianId: {
         type: Sequelize.INTEGER,
+        // references: { model: "Users" },
       },
       clinicianId: {
         type: Sequelize.INTEGER,
+        // references: { model: "Users" },
       },
       status: {
         type: Sequelize.INTEGER,
