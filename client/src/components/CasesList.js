@@ -1,48 +1,54 @@
-import React, { useContext, useEffect, useState } from "react";
-// import { UserContext } from "./UserContext";
-import Case from "./SignUp";
+import React, { useEffect } from "react";
+import { fetchCases, fetchTotal} from '../actions/caseActions';
+import { useDispatch, useSelector } from "react-redux";
 
 function CasesList(props) {
-  const [cases, setCases] = useState([]);
-//   const {} = useContext(UserContext);
+  const dispatch = useDispatch();
+  const cases = useSelector(state => state.cases);
+  const total = useSelector((state) => state.total);
+
+  
+  //dispatch(fetchTotal());
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/cases");
-      const responseData = await response.json();
-      console.log(responseData);
-      setCases(responseData.cases);
-    }
-    fetchData();
+   dispatch(fetchCases());
+   dispatch(fetchTotal());
+
   }, []);
-
-
+ 
+  console.log(cases);
+  console.log("fetch total::::", total);
   return (
     <>
-      <table className="table-cases">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Case #</th>
-            <th>Provider</th>
-            <th>Patient</th>
-            <th>Technician</th>
-            <th>Clinician</th>
-            <th>Submit Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cases.map((ca) => (
-            <tr key={ca.id}>
-              <td>{ca.id}</td>
-              <td>{ca.providerId}</td>
-              <td>{ca.patientName}</td>
-              <td>{ca.technicianId}</td>
-              <td>{ca.submitDate}</td>
+      <div>
+        <h1>Total Count: {cases.length} </h1>
+      </div>
+      <div>
+        <table className="table-cases">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Case #</th>
+              <th>Provider</th>
+              <th>Patient</th>
+              <th>Technician</th>
+              <th>Clinician</th>
+              <th>Submit Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {cases.map((ca) => (
+              <tr key={ca.id}>
+                <td>{ca.id}</td>
+                <td>{ca.User.username}</td>
+                <td>{ca.patientName}</td>
+                <td>{ca.technicianId}</td>
+                <td>{ca.submitDate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

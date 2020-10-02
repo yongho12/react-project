@@ -14,22 +14,6 @@ router.get('/', asyncHandler(async function (req, res, next) {
     return res.json({ users });
 }));
 
-// router.get('/', asyncHandler(async function (req, res, next) {
-//     const users = await Case.findAll();
-//     return res.json({ users });
-// }));
-
-// //getting cases
-// router.get(
-//   "/cases",
-//   asyncHandler(async function (req, res, next) {
-//     const cases = await Case.findAll();
-//     console.log('AAAAAA')
-//     return res.json({ cases });
-//   })
-// );
-
-
 // logging in
 router.post(
   "/token",
@@ -86,6 +70,17 @@ router.post(
     });
   })
 );
+
+
+//logout
+router.delete(
+  "/logout",
+  asyncHandler(async (req, res) => {
+    res.clearCookie("token");
+    res.json({ message: "success" });
+  })
+);
+
 
 
 

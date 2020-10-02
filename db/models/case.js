@@ -10,9 +10,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Case.associate = function(models) {
     // associations can be defined here
-    Case.belongsTo(models.User, { foreignKey: "providerId" });
+    Case.belongsTo(models.User, { foreignKey: 'providerId' });
     // Case.belongsTo(models.User, { foreignKey: "technicianId" });
     // Case.belongsTo(models.User, { foreignKey: "clinicianId" });
+
   };
   return Case;
 };

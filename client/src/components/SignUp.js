@@ -38,20 +38,19 @@ function SignUp(props) {
         email,
         password,
         username,
-        // user,
       }),
     });
 
     if (response.ok) {
       props.history.push("/cases");
     }
-  
+
   };
 
   return (
     <div className="col-lg-8 offset-lg-2">
       <h2>Register</h2>
-      <form name="form" onSubmit={handleSubmit}>
+      <form name="form" className="signup-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email</label>
           <input
